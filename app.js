@@ -1,8 +1,9 @@
 // Configuración de Firebase
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
+    apiKey: "AIzaSyAQ6F4V8_ZTEuGBJq4w145JfbFr674LJnY",
     authDomain: "bloc-de-nota.firebaseapp.com",
-    databaseURL: "https://bloc-de-nota.firebaseio.com",
+    databaseURL: "https://bloc-de-nota-default-rtdb.firebaseio.com",
+
     projectId: "bloc-de-nota",
     storageBucket: "bloc-de-nota.appspot.com",
     messagingSenderId: "1045863299378",
