@@ -1,4 +1,4 @@
-// Configuración de Firebase (declarado solo una vez)
+// Configuración de Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyAQ6F4V8_ZTEuGBJq4w145JfbFr674LJnY",
     authDomain: "bloc-de-nota.firebaseapp.com",
@@ -10,7 +10,7 @@ const firebaseConfig = {
     measurementId: "G-J89DMG4Z2N"
 };
 
-// Inicializa Firebase (asegúrate de que firebase esté definido)
+// Inicializar Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
