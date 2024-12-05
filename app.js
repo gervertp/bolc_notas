@@ -3,7 +3,6 @@ const firebaseConfig = {
     apiKey: "AIzaSyAQ6F4V8_ZTEuGBJq4w145JfbFr674LJnY",
     authDomain: "bloc-de-nota.firebaseapp.com",
     databaseURL: "https://bloc-de-nota-default-rtdb.firebaseio.com",
-
     projectId: "bloc-de-nota",
     storageBucket: "bloc-de-nota.appspot.com",
     messagingSenderId: "1045863299378",
@@ -23,8 +22,8 @@ const noteList = document.getElementById('noteList');
 
 // Guardar Nota en Firebase
 function saveNoteToFirebase(title, content) {
-    const noteId = Date.now(); // ID único basado en el tiempo
-    const noteRef = firebase.database().ref('notes/' + noteId);
+    const noteId = Date.now();
+    const noteRef = database.ref('notes/' + noteId);
     noteRef.set({
         title: title,
         content: content
@@ -33,10 +32,10 @@ function saveNoteToFirebase(title, content) {
 
 // Cargar Notas desde Firebase
 function loadNotesFromFirebase() {
-    const notesRef = firebase.database().ref('notes/');
+    const notesRef = database.ref('notes/');
     notesRef.on('value', (snapshot) => {
         const data = snapshot.val();
-        noteList.innerHTML = ''; // Limpia las notas existentes
+        noteList.innerHTML = '';
         for (const id in data) {
             const note = data[id];
             createNoteElement(id, note.title, note.content);
@@ -59,7 +58,6 @@ function createNoteElement(id, title, content) {
         </div>
     `;
 
-    // Función para eliminar nota
     listItem.querySelector('.delete-button').addEventListener('click', () => {
         deleteNoteFromFirebase(id);
         listItem.remove();
@@ -70,7 +68,7 @@ function createNoteElement(id, title, content) {
 
 // Eliminar Nota desde Firebase
 function deleteNoteFromFirebase(noteId) {
-    const noteRef = firebase.database().ref('notes/' + noteId);
+    const noteRef = database.ref('notes/' + noteId);
     noteRef.remove();
 }
 
