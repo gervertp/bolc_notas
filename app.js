@@ -1,4 +1,4 @@
-// Configuración de Firebase
+// Configuración de Firebase (declarado solo una vez)
 const firebaseConfig = {
     apiKey: "AIzaSyAQ6F4V8_ZTEuGBJq4w145JfbFr674LJnY",
     authDomain: "bloc-de-nota.firebaseapp.com",
@@ -10,7 +10,7 @@ const firebaseConfig = {
     measurementId: "G-J89DMG4Z2N"
 };
 
-// Inicializar Firebase
+// Inicializa Firebase (asegúrate de que firebase esté definido)
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
@@ -22,7 +22,7 @@ const noteList = document.getElementById('noteList');
 
 // Guardar Nota en Firebase
 function saveNoteToFirebase(title, content) {
-    const noteId = Date.now();
+    const noteId = Date.now(); // ID único basado en el tiempo
     const noteRef = database.ref('notes/' + noteId);
     noteRef.set({
         title: title,
@@ -35,7 +35,7 @@ function loadNotesFromFirebase() {
     const notesRef = database.ref('notes/');
     notesRef.on('value', (snapshot) => {
         const data = snapshot.val();
-        noteList.innerHTML = '';
+        noteList.innerHTML = ''; // Limpia las notas existentes
         for (const id in data) {
             const note = data[id];
             createNoteElement(id, note.title, note.content);
@@ -58,6 +58,7 @@ function createNoteElement(id, title, content) {
         </div>
     `;
 
+    // Función para eliminar nota
     listItem.querySelector('.delete-button').addEventListener('click', () => {
         deleteNoteFromFirebase(id);
         listItem.remove();
